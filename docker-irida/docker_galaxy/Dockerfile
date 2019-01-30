@@ -72,6 +72,7 @@ RUN startup_lite && \
     sleep 30 && \
     . $GALAXY_VIRTUAL_ENV/bin/activate  && \
     python $GALAXY_ROOT/setup_data_libraries.py -i $GALAXY_ROOT/library_data.yaml 
+
     # && \
     # python $GALAXY_ROOT/import_workflows.py
 
