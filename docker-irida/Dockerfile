@@ -30,9 +30,10 @@ ENV IRIDA_DATA_DIR /data
 RUN mkdir -p $IRIDA_DATA_DIR/irida
 
 RUN wget \
-	https://github.com/SANBI-SA/irida/releases/download/sanbi-bvc-test/irida-0.17.1.war
+	https://irida.corefacility.ca/downloads/webapp/irida-latest.war
+	# https://github.com/SANBI-SA/irida/releases/download/sanbi-bvc-test/irida-0.17.1.war
 
-RUN mv irida-0.17.1.war /usr/local/tomcat/webapps/irida.war
+RUN mv irida-latest.war /usr/local/tomcat/webapps/irida.war
 
 RUN bash -c 'mkdir ${IRIDA_DATA_DIR}/irida/sequence'
 RUN bash -c 'mkdir ${IRIDA_DATA_DIR}/irida/reference'

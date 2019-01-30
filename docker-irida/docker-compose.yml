@@ -24,8 +24,8 @@ services:
     depends_on:
       - iridadb
       - irida_galaxy
-    # links:
-    #   - iridadb
+    links:
+       - iridadb
     image: haihb/irida
     ports:
       - "8080:8080"
@@ -35,8 +35,7 @@ services:
     restart: always
 
   irida_galaxy:     
-   image: haihb/irida_galaxy 
-#    image: bgruening/galaxy-stable
+    image: irida_galaxy 
     ports:
       - "8800:8800"
       - "8021:21"

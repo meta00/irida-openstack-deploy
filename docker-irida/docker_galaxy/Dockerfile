@@ -20,6 +20,10 @@ WORKDIR /galaxy-central
 #Speficy admin users
 ENV GALAXY_CONFIG_ADMIN_USERS=admin@galaxy.org
 
+# Set up database
+
+ENV GALAXY_CONFIG_DATABASE_CONNECTION=mysql://irida_user:irida_passwd@iridadb:3306/irida_db
+
 # Install miniconda to /miniconda
 RUN curl -LO http://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh
 RUN bash Miniconda-latest-Linux-x86_64.sh -p /miniconda -b
@@ -29,7 +33,6 @@ RUN conda update -y conda
 
 # RUN conda config --add channels http://conda.sanbi.ac.za/conda
 # Add conda channel
-RUN conda config --add channels defaults
 RUN conda config --add channels r
 RUN conda config --add channels bioconda
 RUN conda config --add channels conda-forge
@@ -38,13 +41,13 @@ RUN conda config --add channels conda-forge
 RUN add-tool-shed --url 'http://testtoolshed.g2.bx.psu.edu/' --name 'Test Tool Shed'
 
 # This installs some additional dependencies required by some of the IRIDA tools.
-RUN conda install perl-xml-simple perl-time-piece perl-bioperl openjdk gnuplot libjpeg-turbo
+# RUN conda install perl-xml-simple perl-time-piece perl-bioperl openjdk gnuplot libjpeg-turbo
 
 
 # Install Visualisation
 # RUN install-biojs msa
 # Adding the tool definitions to the container
- ADD my_tool_list.yml $GALAXY_ROOT/my_tool_list.yml
+# ADD my_tool_list.yml $GALAXY_ROOT/my_tool_list.yml
 
 # Install Zahra-Pipeline-Tools
 # RUN install-tools $GALAXY_ROOT/my_tool_list.yml
@@ -53,8 +56,8 @@ RUN conda install perl-xml-simple perl-time-piece perl-bioperl openjdk gnuplot l
 # RUN install-tools $GALAXY_ROOT/workflows.yaml
 
 # Container Style
-ADD GalaxyDocker.png $GALAXY_ROOT/static/welcome_image.png
-ADD welcome.html $GALAXY_ROOT/static/welcome.html
+# ADD GalaxyDocker.png $GALAXY_ROOT/static/welcome_image.png
+# ADD welcome.html $GALAXY_ROOT/static/welcome.html
 
 # # Data libraries
 # ADD setup_data_libraries.py $GALAXY_ROOT/setup_data_libraries.py
