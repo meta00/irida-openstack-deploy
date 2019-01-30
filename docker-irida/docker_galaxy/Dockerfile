@@ -29,15 +29,17 @@ RUN conda update -y conda
 
 # RUN conda config --add channels http://conda.sanbi.ac.za/conda
 # Add conda channel
-RUN conda config --add channels conda-forge
 RUN conda config --add channels defaults
 RUN conda config --add channels r
 RUN conda config --add channels bioconda
+RUN conda config --add channels conda-forge
+
 
 RUN add-tool-shed --url 'http://testtoolshed.g2.bx.psu.edu/' --name 'Test Tool Shed'
 
 # This installs some additional dependencies required by some of the IRIDA tools.
 RUN conda install perl-xml-simple perl-time-piece perl-bioperl openjdk gnuplot libjpeg-turbo
+
 
 # Install Visualisation
 # RUN install-biojs msa
@@ -54,25 +56,23 @@ RUN conda install perl-xml-simple perl-time-piece perl-bioperl openjdk gnuplot l
 ADD GalaxyDocker.png $GALAXY_ROOT/static/welcome_image.png
 ADD welcome.html $GALAXY_ROOT/static/welcome.html
 
-# Data libraries
-ADD setup_data_libraries.py $GALAXY_ROOT/setup_data_libraries.py
-ADD library_data.yaml $GALAXY_ROOT/library_data.yaml
+# # Data libraries
+# ADD setup_data_libraries.py $GALAXY_ROOT/setup_data_libraries.py
+# ADD library_data.yaml $GALAXY_ROOT/library_data.yaml
 
-# Hacky script to import workflows into Galaxy after installation. I would argue this step is redundant.
-ADD import_workflows.py $GALAXY_ROOT/import_workflows.py
+# # Hacky script to import workflows into Galaxy after installation. I would argue this step is redundant.
+# ADD import_workflows.py $GALAXY_ROOT/import_workflows.py
 
-# Both files will not be needed, but the latest changes are not in the 16.04 release.
-ADD startup_lite.sh /usr/bin/startup_lite
-RUN chmod +x /usr/bin/startup_lite
+# # Both files will not be needed, but the latest changes are not in the 16.04 release.
+# ADD startup_lite.sh /usr/bin/startup_lite
+# RUN chmod +x /usr/bin/startup_lite
 
-# Download training data and populate the data library
-RUN startup_lite && \
-    sleep 30 && \
-    . $GALAXY_VIRTUAL_ENV/bin/activate  && \
-    python $GALAXY_ROOT/setup_data_libraries.py -i $GALAXY_ROOT/library_data.yaml 
-
-    # && \
-    # python $GALAXY_ROOT/import_workflows.py
+# # Download training data and populate the data library
+# RUN startup_lite && \
+#     sleep 30 && \
+#     . $GALAXY_VIRTUAL_ENV/bin/activate  && \
+#     python $GALAXY_ROOT/setup_data_libraries.py -i $GALAXY_ROOT/library_data.yaml  && \
+#     python $GALAXY_ROOT/import_workflows.py
 
 # Mark folders as imported from the host.
 VOLUME ["/export/", "/data/", "/var/lib/docker"]
