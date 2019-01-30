@@ -4,8 +4,6 @@
 
 FROM bgruening/galaxy-stable
 
-MAINTAINER Zipho Mashologu, zipho@sanbi.ac.za
-
 ENV GALAXY_CONFIG_BRAND Galaxy_Irida
 ENV ENABLE_TTS_INSTALL True
 # Enable Conda dependency resolution
