@@ -25,7 +25,6 @@ tools:
   tool_shed_url: https://testtoolshed.g2.bx.psu.edu
   tool_panel_section_id: 'Sorting Tools'
 - name: 'package_gatk_sanbi_uwc_3_5'
-  tool_panel_section_id: 'Variant Calling Tools'
   owner: 'sanbi-uwc'
   tool_shed_url: https://testtoolshed.g2.bx.psu.edu
   tool_panel_section_id: 'Variant Calling Tools'

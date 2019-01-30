@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd /galaxy-central/
+cd galaxy-central/
 
 cp config/galaxy.ini.sample $GALAXY_CONFIG_FILE
 export GALAXY_CONFIG_STATIC_ENABLED=True
