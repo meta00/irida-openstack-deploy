@@ -3,7 +3,10 @@ version: '3'
 services:
   nginx:
     restart: always
-    image: haihb/iridanginx
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    image: iridanginx
     ports:
       - "80:80"
     links:
@@ -26,7 +29,8 @@ services:
       - irida_galaxy
     links:
       - iridadb
-    image: haihb/irida
+    build: .
+    image: iridaweb
     ports:
       - "8080:8080"
     volumes:
@@ -35,7 +39,9 @@ services:
     restart: always
 
   irida_galaxy:     
-    image: haihb/irida_galaxy 
+    build:
+      context: docker_galaxy/
+      dockerfile: Dockerfile
     ports:
       - "8800:8800"
       - "8021:21"

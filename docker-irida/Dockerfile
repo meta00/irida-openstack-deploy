@@ -41,7 +41,7 @@ RUN bash -c 'mkdir ${IRIDA_DATA_DIR}/irida/output'
 VOLUME $IRIDA_DATA_DIR
 
 ENV JAVA_OPTS="-Dspring.profiles.active=prod -Ddandelion.profile.active=prod"
-ENV GALAXY_ADMIN_USER zipho@sanbi.ac.za
+ENV GALAXY_ADMIN_USER admin@galaxy.org
 
 COPY irida.conf web.conf /etc/irida/
 COPY wait-for-it.sh .
